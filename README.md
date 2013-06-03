@@ -1,0 +1,4 @@
+Nussinov
+========
+
+Implementacja algorytmu Nussinov
