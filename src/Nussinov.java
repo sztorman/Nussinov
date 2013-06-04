@@ -1,14 +1,14 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class nussinov {
+public class Nussinov {
 
 	private String sequence;
 	private int seqLength;
 	private int[][] nussinovMatrix;
 	Map<Integer, Integer> pary;
 
-	public nussinov(String sequence) {
+	public Nussinov(String sequence) {
 		this.sequence = sequence;
 		seqLength = this.sequence.length();
 		nussinovMatrix = new int[seqLength][seqLength];
