@@ -15,7 +15,7 @@ public class Nussinov {
 		pary = new HashMap<Integer, Integer>();
 		zeroMatrix();
 		makeMatrix();
-		checkPair(0, seqLength);
+		checkPair(0, seqLength-1);
 	}
 
 	private int pairs(char a, char b) {
@@ -40,7 +40,7 @@ public class Nussinov {
 
 		for (int i = 1; i < seqLength; i++) {
 
-			for (int j = 0; j < seqLength; i++) {
+			for (int j = i; j < seqLength; j++) {
 
 				int n = j - i;
 
