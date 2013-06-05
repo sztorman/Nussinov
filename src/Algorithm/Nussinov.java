@@ -1,3 +1,5 @@
+package Algorithm;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,7 +17,11 @@ public class Nussinov {
 		pary = new HashMap<Integer, Integer>();
 		zeroMatrix();
 		makeMatrix();
-		checkPair(0, seqLength-1);
+		checkPair(0, seqLength - 1);
+	}
+
+	public int getSeqLength() {
+		return seqLength;
 	}
 
 	private int pairs(char a, char b) {
@@ -33,7 +39,6 @@ public class Nussinov {
 			return 1;
 
 		return 0;
-
 	}
 
 	private void makeMatrix() {
@@ -74,25 +79,28 @@ public class Nussinov {
 	}
 
 	private void checkPair(int i, int j) {
-		
-		if (i<j){
-			if (nussinovMatrix[i][j]==nussinovMatrix[i+1][j]) checkPair(i+1,j);
-			else if (nussinovMatrix[i][j]==nussinovMatrix[i][j-1])	checkPair(i,j-1);
-			else if (nussinovMatrix[i][j]==nussinovMatrix[i+1][j-1]+pairs(sequence.charAt(i),sequence.charAt(j))){
-				pary.put(i,j);
-				checkPair(i+1,j-1);
+
+		if (i < j) {
+			if (nussinovMatrix[i][j] == nussinovMatrix[i + 1][j])
+				checkPair(i + 1, j);
+			else if (nussinovMatrix[i][j] == nussinovMatrix[i][j - 1])
+				checkPair(i, j - 1);
+			else if (nussinovMatrix[i][j] == nussinovMatrix[i + 1][j - 1]
+					+ pairs(sequence.charAt(i), sequence.charAt(j))) {
+				pary.put(i, j);
+				checkPair(i + 1, j - 1);
+			}
+		} else {
+			for (int k = i + 1; k < j; k++) {
+				if (nussinovMatrix[i][j] == nussinovMatrix[i][k]
+						+ nussinovMatrix[k + 1][j]) {
+					checkPair(i, k);
+					checkPair(k + 1, j);
+					break;
+				}
 			}
 		}
-		else {
-				for (int k=i+1;k<j;k++){
-					if (nussinovMatrix[i][j]==nussinovMatrix[i][k]+nussinovMatrix[k+1][j]){
-						checkPair(i,k);
-						checkPair(k+1,j);
-						break;
-					}
-				}
-		}
-		
+
 	}
 
 	private void zeroMatrix() {
@@ -113,6 +121,53 @@ public class Nussinov {
 
 	public Map<Integer, Integer> getMap() {
 		return pary;
+	}
+
+	public void printMatrix(int[][] m) {
+		try {
+			int rows = m.length;
+			int columns = m[0].length;
+			String str = "|\t";
+
+			for (int i = 0; i < rows; i++) {
+				for (int j = 0; j < columns; j++) {
+					str += m[i][j] + "\t";
+				}
+
+				System.out.println(str + "|");
+				str = "|\t";
+			}
+
+		} catch (Exception e) {
+			System.out.println("Matrix is empty!!");
+		}
+	}
+
+	public String getMatrixAsText(int[][] m) {
+		String matrixString = "";
+		try {
+			int rows = m.length;
+			int columns = m[0].length;
+			String str = "\t|";
+
+			for (int i = 0; i < rows; i++) {
+				for (int j = 0; j < columns; j++) {
+					int entryLength = String.valueOf(m[i][j]).trim().length();
+					if (entryLength == 1)
+						str += m[i][j] + "    ";
+					else {
+						str += m[i][j] + "  ";
+					}
+				}
+				matrixString += str + "|" + "\n";
+				// System.out.println(str + "|");
+				str = "\t|";
+			}
+
+		} catch (Exception e) {
+			return "Matrix is empty!!";
+		}
+		return matrixString;
 	}
 
 }
