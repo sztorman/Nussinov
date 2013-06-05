@@ -160,7 +160,6 @@ public class Nussinov {
 					}
 				}
 				matrixString += str + "|" + "\n";
-				// System.out.println(str + "|");
 				str = "\t|";
 			}
 
