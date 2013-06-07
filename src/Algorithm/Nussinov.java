@@ -9,8 +9,20 @@ public class Nussinov {
 	private int seqLength;
 	private int[][] nussinovMatrix;
 	Map<Integer, Integer> pary;
+	public int AA, AC, AG, AU, CC, CG, GG, CU, GU, UU;
 
-	public Nussinov(String sequence) {
+	public Nussinov(String sequence, int[] eParams) {
+		this.AA = eParams[0];
+		this.AC = eParams[1];
+		this.AG = eParams[2];
+		this.AU = eParams[3];
+		this.CC = eParams[4];
+		this.CG = eParams[5];
+		this.CU = eParams[6];
+		this.GG = eParams[7];
+		this.GU = eParams[8];
+		this.UU = eParams[9];
+
 		this.sequence = sequence;
 		seqLength = this.sequence.length();
 		nussinovMatrix = new int[seqLength][seqLength];
@@ -25,19 +37,72 @@ public class Nussinov {
 	}
 
 	private int pairs(char a, char b) {
+		switch (a) {
+		case ('A'):
+			return checkA(b);
+		case ('C'):
+			return checkC(b);
+		case ('G'):
+			return checkG(b);
+		case ('U'):
+			return checkU(b);
+		}
+		return 0;
+	}
 
-		if (a == 'A' && b == 'U')
-			return 1;
+	private int checkA(char b) {
+		switch (b) {
+		case ('A'):
+			return AA;
+		case ('C'):
+			return AC;
+		case ('G'):
+			return AG;
+		case ('U'):
+			return AU;
+		}
+		return 0;
+	}
 
-		if (b == 'A' && a == 'U')
-			return 1;
+	private int checkC(char b) {
+		switch (b) {
+		case ('A'):
+			return AC;
+		case ('C'):
+			return CC;
+		case ('G'):
+			return CG;
+		case ('U'):
+			return CU;
+		}
+		return 0;
+	}
 
-		if (a == 'G' && b == 'C')
-			return 1;
+	private int checkG(char b) {
+		switch (b) {
+		case ('A'):
+			return AG;
+		case ('C'):
+			return CG;
+		case ('G'):
+			return GG;
+		case ('U'):
+			return GU;
+		}
+		return 0;
+	}
 
-		if (a == 'C' && b == 'G')
-			return 1;
-
+	private int checkU(char b) {
+		switch (b) {
+		case ('A'):
+			return AU;
+		case ('C'):
+			return CU;
+		case ('G'):
+			return GU;
+		case ('U'):
+			return UU;
+		}
 		return 0;
 	}
 

@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Map;
 
-import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -83,16 +82,28 @@ public class Main extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		int[] eParams1 = new int[10];
+		eParams1[0] = 0;
+		eParams1[1] = 0;
+		eParams1[2] = 0;
+		eParams1[3] = 1;
+		eParams1[4] = 0;
+		eParams1[5] = 1;
+		eParams1[6] = 0;
+		eParams1[7] = 0;
+		eParams1[8] = 0;
+		eParams1[9] = 0;
+		
 		JButton button = (JButton) e.getSource();
 		String input;
 		if (button == btnMatrix) {
 			input  = imputTextArea.getText();
-			Nussinov nussinov = new Nussinov(input);
+			Nussinov nussinov = new Nussinov(input, eParams1);
 			int[][] matrix = nussinov.getMatrix();
 			displayArea.setText(nussinov.getMatrixAsText(matrix));
 		} if (button == btnPairs) {
 			input  = imputTextArea.getText();
-			Nussinov nussinov = new Nussinov(input);
+			Nussinov nussinov = new Nussinov(input, eParams1);
 			Map<Integer, Integer> map = nussinov.getMap();
 			displayArea.setText(map.toString());
 		}
